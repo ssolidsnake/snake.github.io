@@ -3,6 +3,10 @@ body{
 	color:#fff;
 	margin:0px;
 	padding:0px;
+	background-position: center; 
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 .br{
 	height:75px;

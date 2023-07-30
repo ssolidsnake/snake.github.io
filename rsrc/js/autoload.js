@@ -4,11 +4,10 @@ const appAutoload=(function(w){
 		"js":[
 			"jquery.min.js",
 			"bootstrap.min.js",
-			""
 		],
 		"css":[
 			"bootstrap.min.css",
-			"",
+			"main.css",
 		],
 	};
 	for(const key in rsrc){

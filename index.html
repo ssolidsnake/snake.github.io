@@ -20,11 +20,13 @@
 					<a class="navbar-brand" href="/">
 						<img class='thumbnailogo' src='https://nitter.net/pic/pbs.twimg.com%2Fprofile_images%2F1685107274396663808%2FNldLhmSA_400x400.jpg'/>
 					</a>
-					<input class="form-control insearch" type="search" placeholder="Welcome Solid Snake">
-					<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#expandaside">
+					
+					<input data-target='modalSearchResults' class="form-control insearch gscInput" type="search" placeholder="Welcome Solid Snake">
+					
+					<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#iDroid">
 						<span class="navbar-toggler-icon"></span>
 					</button>
-					<div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="expandaside">
+					<div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="iDroid">
 						<div class="offcanvas-header" style='height:10px;'>
 							<h5 class="offcanvas-title">
 								<b>Solid Snake</b>
@@ -88,10 +90,9 @@
 			</nav>
 			<div class='br'></div>
 		</header>
-		<section class='container'>
+		<section class='container-fluid'>
 			<div class='row'>
 				<aside class='col-2 d-none d-sm-none d-md-block'>
-					
 				</aside>				
 				<div class='col-sm'>
 					<section id='mainMenu' class='card'>
@@ -111,6 +112,24 @@
 				
 			</footer>
 		</section>
+		
+		<div id='modalSearchResults' class="modal" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">
+							Resultados de tu busqueda
+						</h5>
+						<button type="button" class="btn-close" data-target='modalSearchResults' data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="gcse-searchresults-only"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src='/rsrc/js/autoload.js'></script>
+		<script async src="https://cse.google.com/cse.js?cx=a3eab434c79534db2">
+		</script>
 	</body>
 </html>
-<script src='/rsrc/js/autoload.js'></script>

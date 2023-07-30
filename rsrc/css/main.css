@@ -11,3 +11,9 @@ body{
 	width:45px;
 	height:45px;
 }
+.insearch{
+	float:left;
+	width:70%;
+	text-align:center;
+	font-size:22px;
+}

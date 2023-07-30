@@ -1,10 +1,50 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Solid Snake</title>
-  </head>
-  <body>
-    -
-  </body>
-  <script src="/rsrc/js/autoload.js"></script>
+	<head>
+		<title>Solid Snake</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta charset='utf-8'/>
+		<style>
+			.br{
+				height:70px;
+			}
+		</style>
+		<script src='/rsrc/js/autoload.js'></script>
+	</head>
+	<body>
+		<header>
+			<nav class="navbar navbar-dark bg-dark fixed-top">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="#">
+						
+					</a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#expandaside">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="expandaside">
+						<div class="offcanvas-header">
+							<h5 class="offcanvas-title" id="offcanvasScrollingLabel">Offcanvas with body scrolling</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+						</div>
+						<div class="offcanvas-body">
+						</div>
+					</div>
+				</div>
+			</nav>
+			<div class='br'></div>
+		</header>
+		<section class='container' style='border:1px solid red;'>
+			<div class='row'>
+				<div class='col-10'>
+					A
+				</div>
+				<aside class='col-2'>
+					B
+				</aside>
+			</div>
+			<footer class='text-center'>
+				FOOTER
+			</footer>
+		</section>
+	</body>
 </html>

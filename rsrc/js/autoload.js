@@ -8,7 +8,7 @@ const appAutoload=(function(w){
 		],
 		"css":[
 			"bootstrap.min.css",
-			"main.css",
+			"main.css", 
 		],
 	};
 	for(const key in rsrc){
@@ -35,6 +35,28 @@ const appAutoload=(function(w){
 			});
 		}
 	}
+	
+	setTimeout(function(){
+		$(document).ready(function(){
+			$(".gscInput").keypress(function(e){
+				let data=$(this).data();
+				let target=data.target;
+				if(e.keyCode===13)
+				{
+					document.location.href='#gsc.tab=0&gsc.q='+(this.value);
+					$("#"+target).show();
+				}
+			});
+			
+			$(".btn-close").click(function(){
+				let data=$(this).data();
+				let target=data.target;
+				$("#"+target).hide();
+			});			
+			
+		});
+	},1300);
+	
 })(window,undefined);
 /*
  * Author:ssolidsnake

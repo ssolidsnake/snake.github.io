@@ -1,6 +1,6 @@
 body{
-	background-image:url("/rsrc/img/mb.jpg");
-	color:#fff;
+	/*background-image:url("/rsrc/img/mb.jpg");*/
+	color:#000;
 	margin:0px;
 	padding:0px;
 	background-position: center; 
@@ -8,8 +8,19 @@ body{
 	background-repeat: no-repeat;
 	background-size: cover;
 }
+nav{
+	background-color:#000;
+	color:#fff;
+}
+aside{
+	
+}
+a.customize{
+	color:#000;
+	text-decoration:none;
+}
 #iDroid{
-	background-image:url("/rsrc/img/iDroid1.jpg");
+	/*background-image:url("/rsrc/img/idroid.avif");*/
 	color:#fff;
 	margin:0px;
 	padding:0px;
@@ -19,11 +30,11 @@ body{
 	background-size: cover;
 }
 #mainMenu{
-	background-color:#000;
+	/*background-color:#000;*/
 	width:100%;
 	height:400px;
 	margin:0 auto;
-	color:#fff;
+	color:#000;
 	font-weight:bold;
 	opacity: 0.8;
 }
@@ -31,7 +42,7 @@ body{
 #mainMenuOptions{
 	background-color:#fff;
 	color:#000;
-	width:70%;
+	width:100%;
 	@media (min-width: 276px){
 		width:100%;
 	}
@@ -60,4 +71,16 @@ body{
 	width:70%;
 	text-align:center;
 	font-size:22px;
+}
+.offcanvas-header .btn-close{
+	background-color:#fff;
+	color:#000;
+}
+
+.nav-item{
+	background-color:#fff;
+}
+
+.dropdown a{
+	color:#000;
 }

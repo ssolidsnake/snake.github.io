@@ -3,6 +3,7 @@ const appAutoload=(function(w){
 	const rsrc={
 		"js":[
 			"jquery.min.js",
+			"popper.min.js",
 			"bootstrap.min.js",
 		],
 		"css":[

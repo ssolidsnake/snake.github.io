@@ -56,8 +56,22 @@ a.customize{
 	font-size:12px;
 	color:#fff;
 }
-#colorPalette span{
+#colorPalette *{
 	border:1px solid black;
+	height:70px;
+	width:70px;
+}
+#colorPalette *:hover{
+	font-weight:bold;
+	border:5px solid white;
+}
+#colorPalette *:active{
+	height:150px;
+	width:150px;
+	font-size:28px;
+	font-weight:bold;
+	position:absolute;
+	border:5px solid white;
 }
 
 .htitle{

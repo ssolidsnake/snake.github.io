@@ -58,6 +58,7 @@ a.customize{
 }
 #colorPalette *{
 	border:1px solid black;
+	height:50px;
 }
 #colorPalette .hover{
 	font-weight:bold;

@@ -5,6 +5,9 @@ const appAutoload=(function(w){
 			"jquery.min.js",
 			"popper.min.js",
 			"bootstrap.min.js",
+			"helper.js",
+			"handler.js",
+			"tools.js"
 		],
 		"css":[
 			"bootstrap.min.css",

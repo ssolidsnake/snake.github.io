@@ -11,10 +11,8 @@ const handler=(function(w,undefined){
 	function infinityScroll(callback,elid){
 		elid=elid||null;
 		window.addEventListener('scroll',function(){
-			if(helper.isScrollAtBottom(elid)){
-				if(typeof callback==='function')
-					handler.scroll(callback());
-			}
+			if(typeof callback==='function')
+				handler.scroll(callback(),elid);
 		});
 	}
 	return{
@@ -22,3 +20,9 @@ const handler=(function(w,undefined){
 		infinityScroll:infinityScroll
 	}
 })(window);
+/*
+ * Author:ssolidsnake
+ * Threads:https://www.threads.net/@solidsnakee_
+ * Nitter:https://nitter.net/solidsnakee_
+ * X:https://x.com/solidsnakee_
+ * */

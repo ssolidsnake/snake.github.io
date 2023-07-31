@@ -21,6 +21,14 @@ const helper=(function(w,u){
 		el=document.createElement(tag);
 		el.style.backgroundColor="#"+hex;
 		el.innerHTML='#'+hex;
+		el.onclick=function(e){
+			$('button').removeClass("active");
+			$(this).addClass("active");
+		};
+		el.onmousemove=function(e){
+			$('button').removeClass("hover");
+			$(this).addClass("hover");
+		};
 		return el;
 	}
 	

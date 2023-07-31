@@ -10,9 +10,15 @@ const tool=(function(w,undefined){
 			}
 			colorsInPalette+=1000;
 			console.log(colorsInPalette);
-		},"colorPalette");
+		});
 	}
 	return{
 		"generateColorPalette":generateColorPalette
 	}
 })(window);
+/*
+ * Author:ssolidsnake
+ * Threads:https://www.threads.net/@solidsnakee_
+ * Nitter:https://nitter.net/solidsnakee_
+ * X:https://x.com/solidsnakee_
+ * */

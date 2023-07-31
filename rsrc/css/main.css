@@ -59,11 +59,11 @@ a.customize{
 #colorPalette *{
 	border:1px solid black;
 }
-#colorPalette *:hover{
+#colorPalette .hover{
 	font-weight:bold;
 	border:5px solid white;
 }
-#colorPalette *:active{
+#colorPalette .active{
 	height:150px;
 	width:150px;
 	font-size:28px;

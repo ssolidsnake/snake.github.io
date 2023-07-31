@@ -22,13 +22,15 @@ const helper=(function(w,u){
 		el.style.backgroundColor="#"+hex;
 		el.innerHTML='#'+hex;
 		el.onclick=function(e){
-			$('button').removeClass("active");
 			$(this).addClass("active");
 		};
 		el.onmousemove=function(e){
-			$('button').removeClass("hover");
 			$(this).addClass("hover");
 		};
+		el.onmouseout=function(e){
+			$(this).removeClass("active");
+			$(this).removeClass("hover");
+		};		
 		return el;
 	}
 	

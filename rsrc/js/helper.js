@@ -10,6 +10,7 @@ const helper=(function(w,u){
 			content=document.getElementById(elid);
 		}
 		scrollOffset=window.innerHeight + window.scrollY;
+		console.log(scrollOffset>=content.offsetHeight);
 		return scrollOffset>=content.offsetHeight;
 	}
 	
@@ -35,3 +36,9 @@ const helper=(function(w,u){
 	}
 	
 })(window,undefined);
+/*
+ * Author:ssolidsnake
+ * Threads:https://www.threads.net/@solidsnakee_
+ * Nitter:https://nitter.net/solidsnakee_
+ * X:https://x.com/solidsnakee_
+ * */

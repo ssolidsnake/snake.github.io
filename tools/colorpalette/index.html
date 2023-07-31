@@ -111,10 +111,7 @@
 							</ol>
 						</nav>
 						
-						<div id='colorPalette' style='min-height:600px;'></div>
-						<script>
-							setTimeout(function(){tool.generateColorPalette();},1000);
-						</script>
+						<div id='colorPalette' style='min-height:700px;'></div>
 					</section>
 				</div>
 				<aside class='col-2 d-none d-sm-none d-md-block'>
@@ -142,7 +139,19 @@
 			</div>
 		</div>
 		<script src='/rsrc/js/autoload.js'></script>
-		<script async src="https://cse.google.com/cse.js?cx=a3eab434c79534db2">
+		<script async src="https://cse.google.com/cse.js?cx=a3eab434c79534db2"></script>
+		<script>
+			setTimeout(function(){
+				$(document).ready(function(){
+					i=0;
+					while(i<1000){
+						el=helper.generateColorItem('button');
+						document.getElementById('colorPalette').appendChild(el);
+						i++;
+					}
+					tool.generateColorPalette();
+				});
+			},100);
 		</script>
 	</body>
 </html>

@@ -26,6 +26,8 @@ const tool=(function(w,undefined){
 					"simbol":/[!"#$%&'()*+,-.\/:;<=>?@[\]^_`{|}~]/g,//4
 					"kanji":/[\u4E00-\u9FFF]+/g,//5
 					"cyrillic":/[\u0400-\u04FF]+/g,//6
+					"arabic":/[\u0600-\u06FF]+/,//7
+					"indic":/[\u0900-\u097F]+/g,//8
 				};
 				validFlags=Object.keys(regExp);
 				activedFlags=[];

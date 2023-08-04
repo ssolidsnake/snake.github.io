@@ -28,6 +28,7 @@ const tool=(function(w,undefined){
 					"cyrillic":/[\u0400-\u04FF]+/g,//6
 					"arabic":/[\u0600-\u06FF]+/,//7
 					"indic":/[\u0900-\u097F]+/g,//8
+					"emoji":/[\u{1F300}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/u//9
 				};
 				validFlags=Object.keys(regExp);
 				activedFlags=[];

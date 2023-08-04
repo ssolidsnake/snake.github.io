@@ -1,5 +1,62 @@
 var colorsInPalette=0;
 const tool=(function(w,undefined){
+	
+	const generator=function(){
+		const strUnicode=function(n=10){
+			let i=0;
+			let unicode='';
+			while(i<n){
+				rn=Math.floor(Math.random() * 50000);
+				unicode+=String.fromCharCode(rn);
+				i++;
+			}
+			return unicode;
+		}
+		const key=function(length=5,flags=''){
+			if(flags==''){
+				return strUnicode(length).match(/./g).join('');
+			}
+			else{
+				flags+='';
+				regExp={
+					"all":/./g,//0
+					"upper":/[A-Z]/g,//1
+					"lower":/[a-z]/g,//2
+					"number":/[\d]/g,//3
+					"simbol":/[!"#$%&'()*+,-.\/:;<=>?@[\]^_`{|}~]/g,//4
+					"kanjis":/[\u4E00-\u9FFF]+/g,//5
+					"cirilico":/[\u0400-\u04FF]+/g,//6
+				};
+				validFlags=Object.keys(regExp);
+				activedFlags=[];
+				i=0;
+				while(i<flags.length){
+					if(typeof validFlags[flags[i]]!=="undefined")
+						activedFlags[i]=validFlags[flags[i]];
+					i++;
+				}
+				activedFlags = [...new Set(activedFlags)];
+				i=0;
+				keygen="";
+				while(i<length){
+					rflag=activedFlags[Math.floor(Math.random() * activedFlags.length)];
+					rchar=strUnicode().match(regExp[rflag]);
+					while(rchar==null){
+						rchar=strUnicode().match(regExp[rflag]);
+					}
+					rchar=rchar[Math.floor(Math.random() * rchar.length)];
+					keygen+=rchar;
+					i++;
+				}
+				return keygen;
+			}
+		}
+		return{
+			strUnicode:strUnicode,
+			key:key
+		}
+	}
+	
 	function generateColorPalette(){
 		let el=i=null;
 		while(i<1000){
@@ -19,7 +76,8 @@ const tool=(function(w,undefined){
 		});
 	}
 	return{
-		"generateColorPalette":generateColorPalette
+		"generateColorPalette":generateColorPalette,
+		"generator":generator()
 	}
 })(window);
 /*

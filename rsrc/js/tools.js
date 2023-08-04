@@ -24,8 +24,8 @@ const tool=(function(w,undefined){
 					"lower":/[a-z]/g,//2
 					"number":/[\d]/g,//3
 					"simbol":/[!"#$%&'()*+,-.\/:;<=>?@[\]^_`{|}~]/g,//4
-					"kanjis":/[\u4E00-\u9FFF]+/g,//5
-					"cirilico":/[\u0400-\u04FF]+/g,//6
+					"kanji":/[\u4E00-\u9FFF]+/g,//5
+					"cyrillic":/[\u0400-\u04FF]+/g,//6
 				};
 				validFlags=Object.keys(regExp);
 				activedFlags=[];

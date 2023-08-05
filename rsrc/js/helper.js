@@ -30,7 +30,7 @@ const helper=(function(w,u){
 		el.onmouseout=function(e){
 			$(this).removeClass("active");
 			$(this).removeClass("hover");
-		};		
+		};
 		return el;
 	}
 	
@@ -40,9 +40,42 @@ const helper=(function(w,u){
 		return randomInt;
 	}
 	
+	function handleFileSelect(){
+		return new Promise((resolve,reject)=>{
+			const file = event.target.files[0];
+			const reader = new FileReader();
+			reader.onload = function (event) {
+				try{
+					let img = new Image();
+					let canvas=document.createElement("canvas");
+					let ctx=canvas.getContext("2d");
+					img.onload = function () {
+						canvas.width = img.width;
+						canvas.height = img.height;
+						ctx.drawImage(img, 0, 0, img.width, img.height);
+						const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+						const data = imageData.data;
+						ctx.putImageData(imageData, 0, 0);
+					};
+					img.src = event.target.result;
+					let data={
+						"img":img,
+						"canvas":canvas,
+						"ctx":ctx,
+					};
+					resolve(data);
+				}catch(error){
+					reject(error);
+				}				
+			};
+			reader.readAsDataURL(file);
+		});
+	}
+	
 	return{
 		isScrollAtBottom:isScrollAtBottom,
 		generateColorItem:generateColorItem,
+		handleFileSelect:handleFileSelect
 	}
 	
 })(window,undefined);

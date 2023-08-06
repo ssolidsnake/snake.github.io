@@ -193,10 +193,10 @@
 							const img = new Image();
 							img.src = r.img.src;
 							img.onload = function(){
-								originalCanvas.style.width=img.width+"px";
-								originalCanvas.style.height=img.height+"px";
-								filterCanvas.style.width=img.width+"px";
-								filterCanvas.style.height=img.height+"px";
+								originalCanvas.width=img.width;
+								originalCanvas.height=img.height;
+								filterCanvas.width=img.width;
+								filterCanvas.height=img.height;
 								originalCtx.drawImage(img, 0, 0, originalCanvas.width, originalCanvas.height);
 								filterCtx.drawImage(img, 0, 0, filterCanvas.width, filterCanvas.height);
 							};

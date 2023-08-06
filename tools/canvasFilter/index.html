@@ -10,52 +10,13 @@
 	<br>
 	<br>
 	<input type='button' id='applyGrayScale' value='applyGrayScale'/>
+	<input type='button' id='applySepiaFilter' value='applySepiaFilter'/>
+	<input type='button' id='applyNegativeFilter' value='applyNegativeFilter'/>
+	<input type='button' id='applyBlurFilter' value='applyBlurFilter'/>
+	<input type='button' id='applySharpenFilter' value='applySharpenFilter'/>
 	<input type='button' id='applyFilter2' value='applyFilter2'/>
 	<script src='/rsrc/js/autoload.js'></script>
 	<script>
-		class Filter{
-			constructor({canvas=null}={}){
-				if(!canvas)
-					throw new Error("canvas required");
-				
-				if(!(canvas instanceof HTMLElement && canvas.tagName=='CANVAS'))
-					throw new Error("invalid canvas");
-				
-				this.canvas=canvas;
-				this.ctx=canvas.getContext("2d");
-			}
-
-			applyGrayScaleFilter(){
-				const canvas=this.canvas;
-				const ctx=canvas.getContext("2d");
-				const imageData=ctx.getImageData(0,0,canvas.width,canvas.height);
-				const data = imageData.data;
-				for (let i=0;i<data.length;i+=4) {
-					const gray = (data[i]+data[i+1]+data[i+2])/3;
-					data[i]=gray;
-					data[i+1]=gray;
-					data[i+2]=gray;
-				}
-				ctx.putImageData(imageData, 0, 0);
-			}
-			
-			applyFilter2(){
-				const canvas=this.canvas;
-				const ctx=canvas.getContext("2d");
-				const imageData=ctx.getImageData(0,0,canvas.width,canvas.height);
-				const data = imageData.data;
-				for (let i=0;i<data.length;i+=4){
-					const red=data[i];
-					const green=data[i+1];
-					const blue=data[i+2];
-					data[i]=255-red;
-					data[i+1]=255-green;
-					data[i+2]=255-blue;
-				}
-				ctx.putImageData(imageData, 0, 0);
-			}
-				
-		}
 		setTimeout(function(){
 			$(document).ready(function(){
 				
@@ -77,9 +38,26 @@
 						};
 						const filter=new Filter({"canvas":filterCanvas});
 						const btnApplyFilterGrayScale=document.getElementById("applyGrayScale");
+						const btnApplySepiaFilter=document.getElementById("applySepiaFilter");
+						const btnApplyNegativeFilter=document.getElementById("applyNegativeFilter");
+						const btnApplyBlurFilter=document.getElementById("applyBlurFilter");
+						const btnApplySharpenFilter=document.getElementById("applySharpenFilter");
 						const btnApplyFilter2=document.getElementById("applyFilter2");
+						
 						btnApplyFilterGrayScale.addEventListener("click",function(){
 							console.log(filter.applyGrayScaleFilter());
+						});
+						btnApplySepiaFilter.addEventListener("click",function(){
+							console.log(filter.applySepiaFilter());
+						});
+						btnApplyNegativeFilter.addEventListener("click",function(){
+							console.log(filter.applyNegativeFilter());
+						});
+						btnApplyBlurFilter.addEventListener("click",function(){
+							console.log(filter.applyBlurFilter());
+						});
+						btnApplySharpenFilter.addEventListener("click",function(){
+							console.log(filter.applySharpenFilter());
 						});
 						btnApplyFilter2.addEventListener("click",function(){
 							console.log(filter.applyFilter2());

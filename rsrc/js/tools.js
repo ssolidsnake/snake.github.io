@@ -160,7 +160,7 @@ class Filter{
 
 		const width = canvas.width;
 		const height = canvas.height;
-		const n = 3; // Tamaño del kernel
+		const n = 3; 
 
 		for (let y = 0; y < height; y++) {
 			for (let x = 0; x < width; x++) {
@@ -194,7 +194,7 @@ class Filter{
 		const data = imageData.data;
 		const width = canvas.width;
 		const height = canvas.height;
-		const n = 1; // Tamaño del kernel
+		const n = 1;
 
 		for (let y = n; y < height - n; y++) {
 			for (let x = n; x < width - n; x++) {
@@ -221,22 +221,6 @@ class Filter{
 			}
 	  }
 	  ctx.putImageData(imageData, 0, 0);
-	}
-	
-	applyFilter2(){
-		const canvas=this.canvas;
-		const ctx=canvas.getContext("2d");
-		const imageData=ctx.getImageData(0,0,canvas.width,canvas.height);
-		const data = imageData.data;
-		for (let i=0;i<data.length;i+=4){
-			const red=data[i];
-			const green=data[i+1];
-			const blue=data[i+2];
-			data[i]=255-red;
-			data[i+1]=255-green;
-			data[i+2]=255-blue;
-		}
-		ctx.putImageData(imageData, 0, 0);
 	}
 				
 }

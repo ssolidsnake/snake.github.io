@@ -1,10 +1,17 @@
 var colorsInPalette=0;
-const tool=(function(w,undefined){
-	
-	const generator=function(){
+class Tool{
+	constructor(){
+		return{
+			"generator":this.generator(),
+			"generateColorPalette":this.generateColorPalette
+		}
+	}
+		
+	generator(){
 		const strUnicode=function(n=10){
 			let i=0;
 			let unicode='';
+			let rn=null;
 			while(i<n){
 				rn=Math.floor(Math.random() * 50000);
 				unicode+=String.fromCharCode(rn);
@@ -13,6 +20,7 @@ const tool=(function(w,undefined){
 			return unicode;
 		}
 		const key=function(length=5,flags=''){
+			let regExp,validFlags,activedFlags,keygen,i,rflag,rchar=null;
 			if(flags==''){
 				return strUnicode(length).match(/./g).join('');
 			}
@@ -59,9 +67,10 @@ const tool=(function(w,undefined){
 			key:key
 		}
 	}
-	
-	function generateColorPalette(){
-		let el=i=null;
+			
+	generateColorPalette(){
+		let el=null;
+		let i=null;
 		while(i<1000){
 			el=helper.generateColorItem('button');
 			document.getElementById('colorPalette').appendChild(el);
@@ -78,11 +87,54 @@ const tool=(function(w,undefined){
 			console.log(colorsInPalette);
 		});
 	}
-	return{
-		"generateColorPalette":generateColorPalette,
-		"generator":generator()
+};
+
+class Filter extends Tool{
+	constructor({canvas=null}={}){
+		if(!canvas)
+			throw new Error("canvas required");
+				
+		if(!(canvas instanceof HTMLElement && canvas.tagName=='CANVAS'))
+			throw new Error("invalid canvas");
+				
+		this.canvas=canvas;
+		this.ctx=canvas.getContext("2d");
 	}
-})(window);
+
+	applyGrayScaleFilter(){
+		const canvas=this.canvas;
+		const ctx=canvas.getContext("2d");
+		const imageData=ctx.getImageData(0,0,canvas.width,canvas.height);
+		const data = imageData.data;
+		for (let i=0;i<data.length;i+=4) {
+			const gray = (data[i]+data[i+1]+data[i+2])/3;
+			data[i]=gray;
+			data[i+1]=gray;
+			data[i+2]=gray;
+		}
+		ctx.putImageData(imageData, 0, 0);
+	}
+			
+	applyFilter2(){
+		const canvas=this.canvas;
+		const ctx=canvas.getContext("2d");
+		const imageData=ctx.getImageData(0,0,canvas.width,canvas.height);
+		const data = imageData.data;
+		for (let i=0;i<data.length;i+=4){
+			const red=data[i];
+			const green=data[i+1];
+			const blue=data[i+2];
+			data[i]=255-red;
+			data[i+1]=255-green;
+			data[i+2]=255-blue;
+		}
+		ctx.putImageData(imageData, 0, 0);
+	}
+				
+}
+
+const tool=new Tool();
+
 /*
  * Author:ssolidsnake
  * Threads:https://www.threads.net/@solidsnakee_

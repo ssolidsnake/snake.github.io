@@ -89,14 +89,14 @@ class Tool{
 	}
 };
 
-class Filter extends Tool{
+class Filter{
 	constructor({canvas=null}={}){
 		if(!canvas)
 			throw new Error("canvas required");
 				
 		if(!(canvas instanceof HTMLElement && canvas.tagName=='CANVAS'))
 			throw new Error("invalid canvas");
-				
+		
 		this.canvas=canvas;
 		this.ctx=canvas.getContext("2d");
 	}
@@ -114,7 +114,115 @@ class Filter extends Tool{
 		}
 		ctx.putImageData(imageData, 0, 0);
 	}
-			
+
+	applySepiaFilter(){
+		const canvas=this.canvas;
+		const ctx=canvas.getContext("2d");
+		const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+		const data = imageData.data;
+		for(let i = 0; i < data.length; i += 4){
+			const r = data[i];
+			const g = data[i + 1];
+			const b = data[i + 2];
+
+			const tr = 0.393 * r + 0.769 * g + 0.189 * b;
+			const tg = 0.349 * r + 0.686 * g + 0.168 * b;
+			const tb = 0.272 * r + 0.534 * g + 0.131 * b;
+
+			data[i] = Math.min(255, tr);
+			data[i + 1] = Math.min(255, tg);
+			data[i + 2] = Math.min(255, tb);
+	  }
+	  ctx.putImageData(imageData, 0, 0);
+	}
+
+
+
+	applyNegativeFilter(){
+		const canvas=this.canvas;
+		const ctx=canvas.getContext("2d");
+		const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+		const data = imageData.data;
+		for (let i = 0; i < data.length; i += 4) {
+			data[i] = 255 - data[i]; // R
+			data[i + 1] = 255 - data[i + 1]; // G
+			data[i + 2] = 255 - data[i + 2]; // B
+		}
+		ctx.putImageData(imageData, 0, 0);
+	}
+
+
+	applyBlurFilter() {
+		const canvas=this.canvas;
+		const ctx=canvas.getContext("2d");
+		const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+		const data = imageData.data;
+
+		const width = canvas.width;
+		const height = canvas.height;
+		const n = 3; // Tamaño del kernel
+
+		for (let y = 0; y < height; y++) {
+			for (let x = 0; x < width; x++) {
+				let r = 0;
+				let g = 0;
+				let b = 0;
+				for (let j = -n; j <= n; j++) {
+					for (let i = -n; i <= n; i++) {
+						const pixelIndex = (y + j) * width + x + i;
+						const pixelOffset = pixelIndex * 4;
+						r += data[pixelOffset];
+						g += data[pixelOffset + 1];
+						b += data[pixelOffset + 2];
+					}
+				}
+				const pixelIndex = y * width + x;
+				const pixelOffset = pixelIndex * 4;
+				const numPixels = (2 * n + 1) * (2 * n + 1);
+				data[pixelOffset] = r / numPixels;
+				data[pixelOffset + 1] = g / numPixels;
+				data[pixelOffset + 2] = b / numPixels;
+			}
+		}
+		ctx.putImageData(imageData, 0, 0);
+	}
+
+	applySharpenFilter(){
+		const canvas=this.canvas;
+		const ctx=canvas.getContext("2d");
+		const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+		const data = imageData.data;
+		const width = canvas.width;
+		const height = canvas.height;
+		const n = 1; // Tamaño del kernel
+
+		for (let y = n; y < height - n; y++) {
+			for (let x = n; x < width - n; x++) {
+				let r = 0;
+				let g = 0;
+				let b = 0;
+				for (let j = -n; j <= n; j++) {
+					for (let i = -n; i <= n; i++) {
+						const pixelIndex = (y + j) * width + x + i;
+						const pixelOffset = pixelIndex * 4;
+
+						const weight = j === 0 && i === 0 ? 2 : -1;
+
+						r += data[pixelOffset] * weight;
+						g += data[pixelOffset + 1] * weight;
+						b += data[pixelOffset + 2] * weight;
+					}
+				}
+				const pixelIndex = y * width + x;
+				const pixelOffset = pixelIndex * 4;
+				data[pixelOffset] = Math.min(255, Math.max(0, data[pixelOffset] + r));
+				data[pixelOffset + 1] = Math.min(255, Math.max(0, data[pixelOffset + 1] + g));
+				data[pixelOffset + 2] = Math.min(255, Math.max(0, data[pixelOffset + 2] + b));
+			}
+	  }
+	  ctx.putImageData(imageData, 0, 0);
+	}
+	
 	applyFilter2(){
 		const canvas=this.canvas;
 		const ctx=canvas.getContext("2d");

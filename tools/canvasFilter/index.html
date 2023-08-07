@@ -234,7 +234,7 @@
 								filterCanvas.toBlob(function(blob){
 									const dl=document.createElement("a");
 									dl.href=URL.createObjectURL(blob);
-									dl.dowload='filter';
+									dl.download='filter';
 									dl.click();
 									URL.revokeObjectURL(dl.href);
 								});

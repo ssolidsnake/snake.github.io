@@ -128,7 +128,6 @@
 								<div class='card-body'>
 									<input class="form-control form-control-lg" id="fileInput" accept="image/*" type="file"/>
 									<div>
-										<h1 class='text-center'>Vista previa</h1>
 										<div>
 											<div style='width:700px;margin:0 auto'>
 												<input style='float:left' class='btn btn-sm btn-outline-dark' type='button' id='applyGrayScale' value='applyGrayScale'/>
@@ -139,8 +138,15 @@
 											</div>
 										</div>
 										<br/>
+										<br/>
+										<h1 class='text-center'>Vista previa</h1>
+										<div class="d-grid gap-2">
+											<input id='btnDownload' type='button' class='btn btn-block btn-success' value='Descargar'/>
+										</div>
 										<div style='width:100%;text-align:center'>
+											<br/>
 											<canvas id="filter"></canvas>
+											<br/>
 										</div>
 									</div>
 									<div>
@@ -206,6 +212,7 @@
 							const btnApplyNegativeFilter=document.getElementById("applyNegativeFilter");
 							const btnApplyBlurFilter=document.getElementById("applyBlurFilter");
 							const btnApplySharpenFilter=document.getElementById("applySharpenFilter");
+							const btnDownload=document.getElementById("btnDownload");
 							
 							btnApplyFilterGrayScale.addEventListener("click",function(){
 								filter.applyGrayScaleFilter();
@@ -221,6 +228,17 @@
 							});
 							btnApplySharpenFilter.addEventListener("click",function(){
 								filter.applySharpenFilter();
+							});
+							
+							btnDownload.addEventListener("click",function(){
+								filterCanvas.toBlob(function(blob){
+									const dl=document.createElement("a");
+									dl.href=URL.createObjectURL(blob);
+									dl.dowload='filter';
+									dl.click();
+									URL.revokeObjectURL(dl.href);
+								});
+								
 							});
 						});
 					},false);

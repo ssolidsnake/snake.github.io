@@ -131,10 +131,14 @@
 										<div>
 											<div style='width:700px;margin:0 auto'>
 												<input style='float:left' class='btn btn-sm btn-outline-dark' type='button' id='applyGrayScale' value='applyGrayScale'/>
-												<input style='float:left' class='btn btn-sm btn-outline-dark' type='button' id='applySepiaFilter' value='applySepiaFilter'/>
-												<input style='float:left' class='btn btn-sm btn-outline-dark' type='button' id='applyNegativeFilter' value='applyNegativeFilter'/>
-												<input style='float:left' class='btn btn-sm btn-outline-dark' type='button' id='applyBlurFilter' value='applyBlurFilter'/>
-												<input style='float:left' class='btn btn-sm btn-outline-dark' type='button' id='applySharpenFilter' value='applySharpenFilter'/>
+												<input style='float:left' class='btn btn-sm btn-outline-dark' type='button' id='applySepia' value='applySepiaFilter'/>
+												<input style='float:left' class='btn btn-sm btn-outline-dark' type='button' id='applyNegative' value='applyNegativeFilter'/>
+												<input style='float:left' class='btn btn-sm btn-outline-dark' type='button' id='applyBlur' value='applyBlurFilter'/>
+												<input style='float:left' class='btn btn-sm btn-outline-dark' type='button' id='applySharpen' value='applySharpenFilter'/>
+												<input style='float:left' class='btn btn-sm btn-outline-dark' type='button' id='applyKaleidoscopicDistortion' value='applyKaleidoscopicDistortion'/>
+												<input style='float:left' class='btn btn-sm btn-outline-dark' type='button' id='applyWaterMirage' value='applyWaterMirage'/>
+												<input style='float:left' class='btn btn-sm btn-outline-dark' type='button' id='applyColorExplosion' value='applyColorExplosion'/>
+												<input style='float:left' class='btn btn-sm btn-outline-dark' type='button' id='applySharpEdges' value='applySharpEdges'/>
 											</div>
 										</div>
 										<br/>
@@ -207,28 +211,24 @@
 								filterCtx.drawImage(img, 0, 0, filterCanvas.width, filterCanvas.height);
 							};
 							const filter=new Filter({"canvas":filterCanvas});
-							const btnApplyFilterGrayScale=document.getElementById("applyGrayScale");
-							const btnApplySepiaFilter=document.getElementById("applySepiaFilter");
-							const btnApplyNegativeFilter=document.getElementById("applyNegativeFilter");
-							const btnApplyBlurFilter=document.getElementById("applyBlurFilter");
-							const btnApplySharpenFilter=document.getElementById("applySharpenFilter");
-							const btnDownload=document.getElementById("btnDownload");
 							
-							btnApplyFilterGrayScale.addEventListener("click",function(){
-								filter.applyGrayScaleFilter();
-							});
-							btnApplySepiaFilter.addEventListener("click",function(){
-								filter.applySepiaFilter();
-							});
-							btnApplyNegativeFilter.addEventListener("click",function(){
-								filter.applyNegativeFilter();
-							});
-							btnApplyBlurFilter.addEventListener("click",function(){
-								filter.applyBlurFilter();
-							});
-							btnApplySharpenFilter.addEventListener("click",function(){
-								filter.applySharpenFilter();
-							});
+							const btnFilter=[
+								"applyGrayScale",
+								"applySepia",
+								"applyNegative",
+								"applyBlur",
+								"applySharpen",
+								"applyKaleidoscopicDistortion",
+								"applyWaterMirage",
+								"applyColorExplosion",
+								"applySharpEdges"
+							];
+							for (const id of btnFilter) {
+								let btn=document.getElementById(id);
+								btn.addEventListener("click",function(){
+									filter[id]();
+								});
+							}
 							
 							btnDownload.addEventListener("click",function(){
 								filterCanvas.toBlob(function(blob){

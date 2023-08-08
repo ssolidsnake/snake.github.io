@@ -101,7 +101,7 @@ class Filter{
 		this.ctx=canvas.getContext("2d");
 	}
 
-	applyGrayScaleFilter(){
+	applyGrayScale(){
 		const canvas=this.canvas;
 		const ctx=canvas.getContext("2d");
 		const imageData=ctx.getImageData(0,0,canvas.width,canvas.height);
@@ -115,7 +115,7 @@ class Filter{
 		ctx.putImageData(imageData, 0, 0);
 	}
 
-	applySepiaFilter(){
+	applySepia(){
 		const canvas=this.canvas;
 		const ctx=canvas.getContext("2d");
 		const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -138,21 +138,21 @@ class Filter{
 
 
 
-	applyNegativeFilter(){
+	applyNegative(){
 		const canvas=this.canvas;
 		const ctx=canvas.getContext("2d");
 		const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 		const data = imageData.data;
 		for (let i = 0; i < data.length; i += 4) {
-			data[i] = 255 - data[i]; // R
-			data[i + 1] = 255 - data[i + 1]; // G
-			data[i + 2] = 255 - data[i + 2]; // B
+			data[i] = 255 - data[i]; 
+			data[i + 1] = 255 - data[i + 1]; 
+			data[i + 2] = 255 - data[i + 2]; 
 		}
 		ctx.putImageData(imageData, 0, 0);
 	}
 
 
-	applyBlurFilter() {
+	applyBlur() {
 		const canvas=this.canvas;
 		const ctx=canvas.getContext("2d");
 		const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -187,7 +187,7 @@ class Filter{
 		ctx.putImageData(imageData, 0, 0);
 	}
 
-	applySharpenFilter(){
+	applySharpen(){
 		const canvas=this.canvas;
 		const ctx=canvas.getContext("2d");
 		const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -222,7 +222,87 @@ class Filter{
 	  }
 	  ctx.putImageData(imageData, 0, 0);
 	}
-				
+	
+	applyKaleidoscopicDistortion(){
+		const canvas=this.canvas;
+		const ctx=canvas.getContext("2d");
+		const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+		const data = imageData.data;
+		const width = canvas.width;
+		const height = canvas.height;
+		const sections = 2+Math.random()*1;
+        const angleIncrement = (Math.random() * Math.PI) / sections;
+		for (let i = 0; i < sections; i++) {
+            ctx.putImageData(imageData, 0, 0);
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.rotate(angleIncrement);
+            ctx.scale(-1, 1);
+            ctx.drawImage(canvas, -canvas.width / 2, -canvas.height / 2);
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+        }
+	}
+	
+	applyWaterMirage(){
+		const canvas=this.canvas;
+		const ctx=canvas.getContext("2d");
+		const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+		const data = imageData.data;
+		const width = canvas.width;
+		const height = canvas.height;
+		for (let y = 0; y < canvas.height / 2; y++) {
+			for (let x = 0; x < canvas.width; x++) {
+				const pixelIndex = (y * canvas.width + x) * 4;
+				const reflectedY = canvas.height - y - 1;
+				const reflectedPixelIndex = (reflectedY * canvas.width + x) * 4;
+				imageData.data[pixelIndex] = imageData.data[reflectedPixelIndex];
+				imageData.data[pixelIndex + 1] = imageData.data[reflectedPixelIndex + 1];
+				imageData.data[pixelIndex + 2] = imageData.data[reflectedPixelIndex + 2];
+			}
+		}
+		ctx.putImageData(imageData, 0, 0);
+	}
+	
+	applyColorExplosion(){
+		const canvas=this.canvas;
+		const ctx=canvas.getContext("2d");
+		const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+		const data = imageData.data;
+		const width = canvas.width;
+		const height = canvas.height;
+		for (let i = 0; i < imageData.data.length; i += 4) {
+			const r = imageData.data[i];
+			const g = imageData.data[i + 1];
+			const b = imageData.data[i + 2];
+			imageData.data[i] = Math.min(255, r * 1.5);
+			imageData.data[i + 1] = Math.min(255, g * 1.5);
+			imageData.data[i + 2] = Math.min(255, b * 1.5);
+		}
+		ctx.putImageData(imageData, 0, 0);
+	}	
+	
+	applySharpEdges(){
+		const canvas=this.canvas;
+		const ctx=canvas.getContext("2d");
+		const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+		const data = imageData.data;
+		const width = canvas.width;
+		const height = canvas.height;
+		const edgeThreshold = 30;
+		for (let y = 0; y < canvas.height; y++) {
+			for (let x = 0; x < canvas.width; x++) {
+				const i = (y * canvas.width + x) * 4;
+				const j = ((y + 1) * canvas.width + x) * 4;
+				const diff = Math.abs(data[i] - data[j]);
+				if (diff > edgeThreshold) {
+					data[i] = 0;
+					data[i + 1] = 0;
+					data[i + 2] = 0;
+				}
+			}
+		}
+		ctx.putImageData(imageData, 0, 0);
+	}		
+	
 }
 
 const tool=new Tool();

@@ -57,9 +57,9 @@ const appAutoload=(function(w){
 				$("#"+target).hide();
 			});
 
-			 $('img').error=function(){
-				this.src='/rsrc/img/solidsnakee_.jpg';
-			 };
+			 $('img').on("error",function(){
+				$(this).attr("src",'/rsrc/img/solidsnakee_.jpg');
+			 });
 			
 			
 		});

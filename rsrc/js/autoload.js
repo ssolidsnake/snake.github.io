@@ -55,7 +55,12 @@ const appAutoload=(function(w){
 				let data=$(this).data();
 				let target=data.target;
 				$("#"+target).hide();
-			});			
+			});
+
+			 $('img').error=function(){
+				this.src='/rsrc/img/solidsnakee_.jpg';
+			 };
+			
 			
 		});
 	},1300);

@@ -238,29 +238,32 @@
 		<script async src="https://cse.google.com/cse.js?cx=a3eab434c79534db2"></script>
 		<script>
 			document.addEventListener('DOMContentLoaded',function(){
-				$(document).ready(function(){
-					var strFlags=nSentinel=lenSentinel=null;
-					$("#runSentinelKeyGen").click(function(){
-						strFlags='';
-						nSentinel=$("#nSentinel").val();
-						lenSentinel=$("#lenSentinel").val();
-						$('input[type="checkbox"]').each(function() {
-							if($(this).prop('checked')===true){
-								strFlags+=$(this).attr('value');
+				setTimeout(function(){
+					$(document).ready(function(){
+						var strFlags=nSentinel=lenSentinel=null;
+						$("#runSentinelKeyGen").click(function(){
+							strFlags='';
+							nSentinel=$("#nSentinel").val();
+							lenSentinel=$("#lenSentinel").val();
+							$('input[type="checkbox"]').each(function() {
+								if($(this).prop('checked')===true){
+									strFlags+=$(this).attr('value');
+								}
+							});
+							$("#itemsSentinelKeygen").html('');
+							c=0;
+							while(c<nSentinel){
+								console.log(c);
+								el=document.createElement('list');
+								el.classList.add('list-group-item','itemSentinelKeygen');
+								el.innerHTML=tool.generator.key(lenSentinel,strFlags);
+								document.getElementById("itemsSentinelKeygen").appendChild(el);
+								c++;
 							}
 						});
-						$("#itemsSentinelKeygen").html('');
-						c=0;
-						while(c<nSentinel){
-							console.log(c);
-							el=document.createElement('list');
-							el.classList.add('list-group-item','itemSentinelKeygen');
-							el.innerHTML=tool.generator.key(lenSentinel,strFlags);
-							document.getElementById("itemsSentinelKeygen").appendChild(el);
-							c++;
-						}
 					});
-				});
+				},1300);
+
 			});
 		</script>
 	</body>

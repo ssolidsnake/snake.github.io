@@ -38,8 +38,7 @@ const appAutoload=(function(w){
 			});
 		}
 	}
-	
-	setTimeout(function(){
+	document.addEventListener('DOMContentLoaded',function(){
 		$(document).ready(function(){
 			$(".gscInput").keypress(function(e){
 				let data=$(this).data();
@@ -56,20 +55,12 @@ const appAutoload=(function(w){
 				let target=data.target;
 				$("#"+target).hide();
 			});			
-			
+			$("img").on("error",function(){
+				$(this).attr("src",'/rsrc/img/solidsnakee_.jpg');
+			});
 		});
-	},1300);
-	
-})(window,undefined);
-
-document.addEventListener('DOMContentLoaded', function() {
-	imgs=document.querySelectorAll('img');
-	imgs.forEach(function(img){
-		img.onerror=function(){
-			this.src='/rsrc/img/solidsnakee_.jpg';
-		}
 	});
-})
+})(window,undefined);
 
 /*
  * Author:ssolidsnake

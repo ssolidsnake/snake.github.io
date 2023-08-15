@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
 const appAutoload=(function(w){
 	let value=fname=i=el=uri=null;
 	let regex={};
-	regex['uri'] = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+	regex['uri'] = /^(https?):\/\/[^\s/$.?#].[^\s]*$/i;
 	const rsrc={
 		"js":[
 			"jquery.min.js",

@@ -38,31 +38,36 @@ const appAutoload=(function(w){
 			});
 		}
 	}
-	document.addEventListener('DOMContentLoaded',function(){
-		setTimeout(function(){
-			$(document).ready(function(){
-				$(".gscInput").keypress(function(e){
-					let data=$(this).data();
-					let target=data.target;
-					if(e.keyCode===13)
-					{
-						document.location.href='#gsc.tab=0&gsc.q='+(this.value);
-						$("#"+target).show();
-					}
-				});
-				
-				$(".btn-close").click(function(){
-					let data=$(this).data();
-					let target=data.target;
-					$("#"+target).hide();
-				});			
-				$("img").on("error",function(){
-					$(this).attr("src",'/rsrc/img/solidsnakee_.jpg');
-				});
+	
+	setTimeout(function(){
+		$(document).ready(function(){
+			$(".gscInput").keypress(function(e){
+				let data=$(this).data();
+				let target=data.target;
+				if(e.keyCode===13)
+				{
+					document.location.href='#gsc.tab=0&gsc.q='+(this.value);
+					$("#"+target).show();
+				}
 			});
-		},1300);
-	});
+				
+			$(".btn-close").click(function(){
+				let data=$(this).data();
+				let target=data.target;
+				$("#"+target).hide();
+			});
+		});
+	},1300);
 })(window,undefined);
+
+document.addEventListener('DOMContentLoaded', function() {
+	imgs=document.querySelectorAll('img');
+	imgs.forEach(function(img){
+		img.onerror=function(){
+			this.src='/rsrc/img/solidsnakee_.jpg';
+		}
+	});
+})
 
 /*
  * Author:ssolidsnake

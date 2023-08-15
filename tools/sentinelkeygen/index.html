@@ -237,7 +237,7 @@
 		<script src='/rsrc/js/autoload.js'></script>
 		<script async src="https://cse.google.com/cse.js?cx=a3eab434c79534db2"></script>
 		<script>
-			setTimeout(function(){
+			document.addEventListener('DOMContentLoaded',function(){
 				$(document).ready(function(){
 					var strFlags=nSentinel=lenSentinel=null;
 					$("#runSentinelKeyGen").click(function(){
@@ -261,7 +261,7 @@
 						}
 					});
 				});
-			},2000);
+			});
 		</script>
 	</body>
 </html>

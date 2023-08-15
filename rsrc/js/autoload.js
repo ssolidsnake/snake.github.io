@@ -1,4 +1,10 @@
 const appAutoload=(function(w){
+	imgs=document.querySelectorAll('img');
+	imgs.forEach(function(img){
+		img.onerror=function(){
+			this.src='/rsrc/img/solidsnakee_.jpg';
+		}
+	});
 	let value=fname=i=el=uri=null;
 	const rsrc={
 		"js":[
@@ -55,15 +61,7 @@ const appAutoload=(function(w){
 				let data=$(this).data();
 				let target=data.target;
 				$("#"+target).hide();
-			});
-
-			imgs=document.querySelectorAll('img');
-			imgs.forEach(function(img){
-				img.onerror=function(){
-					this.src='/rsrc/img/solidsnakee_.jpg'
-				};
-			});
-			
+			});			
 			
 		});
 	},1300);

@@ -39,26 +39,28 @@ const appAutoload=(function(w){
 		}
 	}
 	document.addEventListener('DOMContentLoaded',function(){
-		$(document).ready(function(){
-			$(".gscInput").keypress(function(e){
-				let data=$(this).data();
-				let target=data.target;
-				if(e.keyCode===13)
-				{
-					document.location.href='#gsc.tab=0&gsc.q='+(this.value);
-					$("#"+target).show();
-				}
+		setTimeout(function(){
+			$(document).ready(function(){
+				$(".gscInput").keypress(function(e){
+					let data=$(this).data();
+					let target=data.target;
+					if(e.keyCode===13)
+					{
+						document.location.href='#gsc.tab=0&gsc.q='+(this.value);
+						$("#"+target).show();
+					}
+				});
+				
+				$(".btn-close").click(function(){
+					let data=$(this).data();
+					let target=data.target;
+					$("#"+target).hide();
+				});			
+				$("img").on("error",function(){
+					$(this).attr("src",'/rsrc/img/solidsnakee_.jpg');
+				});
 			});
-			
-			$(".btn-close").click(function(){
-				let data=$(this).data();
-				let target=data.target;
-				$("#"+target).hide();
-			});			
-			$("img").on("error",function(){
-				$(this).attr("src",'/rsrc/img/solidsnakee_.jpg');
-			});
-		});
+		},1300);
 	});
 })(window,undefined);
 

@@ -1,5 +1,7 @@
 const appAutoload=(function(w){
 	let value=fname=i=el=uri=null;
+	let regex={};
+	regex['uri'] = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
 	const rsrc={
 		"js":[
 			"jquery.min.js",
@@ -7,7 +9,8 @@ const appAutoload=(function(w){
 			"bootstrap.min.js",
 			"helper.js",
 			"handler.js",
-			"tools.js"
+			"tools.js",
+			"https://cse.google.com/cse.js?cx=a3eab434c79534db2",
 		],
 		"css":[
 			"bootstrap.min.css",
@@ -20,7 +23,7 @@ const appAutoload=(function(w){
 			value=rsrc[key];
 			value.forEach((fname,i)=>{
 				if(fname!==null && fname!==''){
-					uri="/rsrc/"+key+'/'+fname;
+					uri=(regex['uri'].test(fname))?fname:"/rsrc/"+key+'/'+fname;
 					if(key==='css')
 					{
 						el=document.createElement("link");

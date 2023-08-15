@@ -1,10 +1,4 @@
 const appAutoload=(function(w){
-	imgs=document.querySelectorAll('img');
-	imgs.forEach(function(img){
-		img.onerror=function(){
-			this.src='/rsrc/img/solidsnakee_.jpg';
-		}
-	});
 	let value=fname=i=el=uri=null;
 	const rsrc={
 		"js":[
@@ -67,6 +61,16 @@ const appAutoload=(function(w){
 	},1300);
 	
 })(window,undefined);
+
+document.addEventListener('DOMContentLoaded', function() {
+	imgs=document.querySelectorAll('img');
+	imgs.forEach(function(img){
+		img.onerror=function(){
+			this.src='/rsrc/img/solidsnakee_.jpg';
+		}
+	});
+})
+
 /*
  * Author:ssolidsnake
  * Threads:https://www.threads.net/@solidsnakee_

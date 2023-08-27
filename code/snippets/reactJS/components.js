@@ -53,13 +53,13 @@ function Calc(){
 	const [res,setRes]=React.useState(0);
 	const calculator=(e)=>{
 		let oper=e.target.value;
-		let regexp=/[\d\+\-\*\/]/;
+		let regexp=/^\(*?\d\)*?(\(*?[\+\-\*\/]?\d?\)*?)*\d?$/;
 		try{
 			if(regexp.test(oper)){
 				const evaluate=new Function("return "+oper);
 				setRes(evaluate());
 			}else{
-				setRes();
+				setRes('sintaxError');
 			}
 		}catch(e){
 			setRes(e+'');

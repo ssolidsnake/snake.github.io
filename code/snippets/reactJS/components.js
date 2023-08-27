@@ -1,4 +1,4 @@
-function formData(){
+function FormData(){
 	const [formData,setFormData]=React.useState({
 
 	});
